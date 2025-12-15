@@ -33,5 +33,12 @@ POST http://localhost:8000/admin/restaurant/create
 Content-Type: application/json
 
 {
-
+  "name": "La Boucherie",
+  "ownerName": "Jean-Pierre",
+  "foodTypes": ["Pizza", "Burger", "French"],
+  "postalCode": "75001",
+  "address": "Rue de la Paix",
+  "phone": "0612345678",
+  "email": "jean-pierre@gmail.com",
+  "password": "123456"
 }
