@@ -1,5 +1,6 @@
+import 'dotenv/config'
 import express, { type Request, type Response } from "express";
-import { AdminRoute } from "./routes/admin.routes";
+import { AdminRoute } from "./routes/admin.routes.js";
 
 const app = express();
 // Middleware pour pouvoir gérer les requêtes avec du json

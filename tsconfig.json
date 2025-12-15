@@ -7,8 +7,10 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "NodeNext",
-    "target": "esnext",
+    "module": "ESNext",
+    "target": "ES2023",
+    "moduleResolution": "node",
+    "ignoreDeprecations": "6.0",
     "types": ["node"],
     // For nodejs:
     // "lib": ["esnext"],
@@ -42,5 +44,10 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+  },
+  // test for no error
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
   }
 }

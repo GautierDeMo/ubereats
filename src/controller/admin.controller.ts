@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { CreateRestaurantDtoInputs } from "../dtos/restaurant.dto";
-import { prisma } from "../orm/client";
-import { generateSalt, hashPassword } from "../utils/password-utility";
+import { CreateRestaurantDtoInputs } from "../dtos/restaurant.dto.js";
+import { prisma } from "../orm/client.js";
+import { generateSalt, hashPassword } from "../utils/password-utility.js";
 
 export const registerRestaurant = async (
   req: Request,

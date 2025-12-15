@@ -1,5 +1,5 @@
 import { /** Request, Response, */ Router } from "express";
-import { getRestaurantById, getRestaurants, registerRestaurant } from "../controller/admin.controller";
+import { getRestaurantById, getRestaurants, registerRestaurant } from "../controller/admin.controller.js";
 
 const router = Router();
 

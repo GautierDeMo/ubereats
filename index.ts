@@ -1,4 +1,4 @@
-// Légère explication de express
+// Succincte explication de express
 import express, { NextFunction } from "express";
 
 const middleware = (req: Request, res: Response, next: NextFunction) => {}
