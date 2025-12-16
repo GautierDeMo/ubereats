@@ -1,5 +1,6 @@
 import { /** Request, Response, */ Router } from "express";
-import { getRestaurantById, getRestaurants, registerRestaurant } from "../controller/admin.controller.js";
+import { getRestaurantById, getRestaurants, registerRestaurant } from "../../controllers/v1";
+
 
 const router = Router();
 
@@ -9,7 +10,8 @@ const router = Router();
 // });
 
 router.post('/restaurant/create', registerRestaurant);
-router.post('/restaurant/', getRestaurants);
-router.post('/restaurant/:id', getRestaurantById);
+router.get('/restaurant', getRestaurants);
+router.get('/restaurant/:id', getRestaurantById);
+
 
 export {router as AdminRoute}

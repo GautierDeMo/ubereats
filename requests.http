@@ -1,7 +1,13 @@
-# ------------------------------------------------------------------------------
+# Création de variable(s)
+@id=f2071317-26f2-4628-acbc-40e6dfe9902d
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYyMDcxMzE3LTI2ZjItNDYyOC1hY2JjLTQwZTZkZmU5OTAyZCIsIm5hbWUiOiJMZSBQZXRpdCBCaXN0cm8iLCJvd25lck5hbWUiOiJJc2FiZWxsZSBEdXBvbnQiLCJlbWFpbCI6ImxlcGV0aXRiaXN0cm9AZ21haWwuY29tIiwiZm9vZFR5cGVzIjpbIkZyZW5jaCIsIlNlYWZvb2QiXSwiaWF0IjoxNzY1ODkwMTg5LCJleHAiOjE3NjU5NzY1ODl9.xLz87fUz4LVSZaM2X92xWDUvWuUlux_g__os6A1LNgQ
+
+#-------------------------------------------------------------------------------
+
+################################################################################
 # Premiers test de routes, requêtes, avant de faire router/controller dans le
 # 'app.ts'
-# ------------------------------------------------------------------------------
+################################################################################
 
 ### TEST GET
 GET http://localhost:8000?id=1234&name=Toto
@@ -22,23 +28,101 @@ PUT http://localhost:8000/1234
 ### TEST POST JUSTE POUR INFO ###
 POST http://localhost:8000
 # Lorsque j'envoie un formulaire
-# Content-Type: multipart/form-data
+Content-Type: multipart/form-data
 
-# ------------------------------------------------------------------------------
+################################################################################
 # Fin des tests
-# ------------------------------------------------------------------------------
+################################################################################
 
-### Admin CREATE restaurant
-POST http://localhost:8000/admin/restaurant/create
+#-------------------------------------------------------------------------------
+
+################################################################################
+# GET ROUTES
+################################################################################
+
+### GET Restaurants list ###
+GET http://localhost:8000/v1/admin/restaurant
+
+### GET Restaurant by id ###
+GET http://localhost:8000/v1/admin/restaurant/{{id}}
+
+### GET Restaurant profile ###
+GET http://localhost:8000/v1/restaurant/profile
+Authorization: Bearer {{token}}
+
+################################################################################
+# GET ROUTES
+################################################################################
+
+#-------------------------------------------------------------------------------
+
+################################################################################
+# POST ROUTES
+################################################################################
+
+### Admin CREATE restaurant ###
+POST http://localhost:8000/v1/admin/restaurant/create
 Content-Type: application/json
 
 {
   "name": "La Boucherie",
   "ownerName": "Jean-Pierre",
   "foodTypes": ["Pizza", "Burger", "French"],
-  "postalCode": "75001",
+  "postalcode": "75001",
   "address": "Rue de la Paix",
   "phone": "0612345678",
   "email": "jean-pierre@gmail.com",
   "password": "123456"
 }
+
+### Login ###
+POST http://localhost:8000/v1/restaurant/login
+Content-Type: application/json
+
+{
+  "email": "lepetitbistro@gmail.com",
+  "password": "qwerty"
+}
+
+################################################################################
+# POST ROUTES
+################################################################################
+
+#-------------------------------------------------------------------------------
+
+################################################################################
+# PATCH ROUTES
+################################################################################
+
+### Restaurant (user) UPDATE restaurant ###
+PATCH http://localhost:8000/v1/restaurant/update
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Boucherie",
+  "ownerName": "Jean-Pierre",
+  "foodTypes": ["Pizza", "Burger", "French"],
+  "address": "Rue de la Paix",
+  "phone": "0612345678"
+}
+
+### UPDATE restaurant service available ###
+PATCH http://localhost:8000/v1/restaurant/available
+Authorization: Bearer {{token}}
+
+################################################################################
+# PATCH ROUTES
+################################################################################
+
+#-------------------------------------------------------------------------------
+
+################################################################################
+# PUT ROUTES
+################################################################################
+
+
+
+################################################################################
+# PUT ROUTES
+################################################################################

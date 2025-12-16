@@ -5,27 +5,35 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider    = "prisma-client"
-  output      = "../src/generated/prisma"
+  provider = "prisma-client"
+  output   = "../prisma/generated"
 }
 
 datasource db {
   provider = "postgresql"
 }
 
+model Food {
+  id           String     @id @default(uuid())
+  name         String
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+}
+
 model Restaurant {
-  address           String
-  createdAt         DateTime      @default(now())
-  coverImages       String[]      @default([])
-  email             String        @unique
-  foodTypes         String[]
-  id                String        @id @default(uuid())
-  name              String
-  ownerName         String
-  password          String
-  phone             String
-  postalCode        String
-  rating            Float         @default(0.0)
-  salt              String
-  serviceAvailable  Boolean       @default(false)
+  address          String
+  createdAt        DateTime @default(now())
+  coverImages      String[] @default([])
+  email            String   @unique
+  foodTypes        String[]
+  id               String   @id @default(uuid())
+  name             String
+  ownerName        String
+  password         String
+  phone            String
+  postalcode       String
+  rating           Float    @default(0.0)
+  salt             String
+  serviceAvailable Boolean  @default(false)
+  foods            Food[]
 }
