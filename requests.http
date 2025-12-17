@@ -1,6 +1,6 @@
 # Création de variable(s)
-@id=f2071317-26f2-4628-acbc-40e6dfe9902d
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYyMDcxMzE3LTI2ZjItNDYyOC1hY2JjLTQwZTZkZmU5OTAyZCIsIm5hbWUiOiJMZSBQZXRpdCBCaXN0cm8iLCJvd25lck5hbWUiOiJJc2FiZWxsZSBEdXBvbnQiLCJlbWFpbCI6ImxlcGV0aXRiaXN0cm9AZ21haWwuY29tIiwiZm9vZFR5cGVzIjpbIkZyZW5jaCIsIlNlYWZvb2QiXSwiaWF0IjoxNzY1ODkwMTg5LCJleHAiOjE3NjU5NzY1ODl9.xLz87fUz4LVSZaM2X92xWDUvWuUlux_g__os6A1LNgQ
+@id=26f6c956-dc58-4df9-a5f6-586f8ed98be8
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4M2QwM2UyLWIyNWYtNDg0Mi05ZWRkLTM2NGQ4Y2NlYzQyYiIsIm5hbWUiOiJMYSBCb3VjaGVyaWUiLCJvd25lck5hbWUiOiJKZWFuLVBpZXJyZSIsImVtYWlsIjoiamVhbi1waWVycmVAZ21haWwuY29tIiwiZm9vZFR5cGVzIjpbIlBpenphIiwiQnVyZ2VyIiwiRnJlbmNoIl0sImlhdCI6MTc2NTk2ODAyMywiZXhwIjoxNzY2MDU0NDIzfQ.MmiQ7704KVYGE41m87c1j3-jDpV476zSbzbbjCsslhA
 
 #-------------------------------------------------------------------------------
 
@@ -80,8 +80,8 @@ POST http://localhost:8000/v1/restaurant/login
 Content-Type: application/json
 
 {
-  "email": "lepetitbistro@gmail.com",
-  "password": "qwerty"
+  "email": "jean-pierre@gmail.com",
+  "password": "123456"
 }
 
 ################################################################################

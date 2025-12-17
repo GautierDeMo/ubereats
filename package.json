@@ -2,7 +2,7 @@
   "name": "ubereats",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/app.js",
   "scripts": {
     "seed": "tsx src/orm/seed.ts",
     "dev": "nodemon src/app.ts",

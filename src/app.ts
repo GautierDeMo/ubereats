@@ -1,4 +1,3 @@
-import 'dotenv/config'
 import express /**, { type Request, type Response } */ from "express";
 import { v1Route } from './routes/v1';
 import { jsonApiResponseMiddleware } from './middlewares/v1';
