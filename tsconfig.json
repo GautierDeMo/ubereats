@@ -36,7 +36,8 @@
 
     // Recommended Options
     "strict": true,
-    "jsx": "react-jsx",
+    // unused because no React, or Next.js
+    // "jsx": "react-jsx",
     "verbatimModuleSyntax": false,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
@@ -44,10 +45,9 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    // TODO: c'est dans le restaurantDTO la raison qui fait qu'on a ajouté ça
+    // rapport aux classes au lieu des interfaces
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true
   },
-  // test for no error
-  "ts-node": {
-    "esm": true,
-    "experimentalSpecifierResolution": "node"
-  }
 }

@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import { EditRestaurantDtoInputs, loginDtoInputs } from "../../dtos/v1";
+import { CreateFoodDtoInputs, EditRestaurantDtoInputs, loginDtoInputs } from "../../dtos/v1";
 import { prisma } from "../../orm/v1";
 import { generateSignature, isValidPassword, sanitizeRestaurant } from "../../utils/v1";
+import { uploadImagesMiddleware } from "../../middlewares/v1";
 
 export const login = async (
   req: Request,
@@ -88,19 +89,85 @@ export const updateServiceAvailable = async (
 ) : Promise<any> => {
   try {
     const id = req.user?.id;
-    if (!id) return res.jsonError('Missing restaurant id', 400);
+    if (!id) return res.jsonError('Missing restaurant id', 400)
 
     const restaurant = await prisma.restaurant.findUnique({
       where: { id: id }
-    });
-    if (!restaurant) return res.jsonError('Restaurant not found', 404);
+    })
+    if (!restaurant) return res.jsonError('Restaurant not found', 404)
 
     const updatedRestaurant = await prisma.restaurant.update({
       where: { id: id },
       data: { serviceAvailable: !restaurant.serviceAvailable }
-    });
-    return res.jsonSuccess(sanitizeRestaurant(updatedRestaurant), 200);
+    })
+    return res.jsonSuccess(sanitizeRestaurant(updatedRestaurant), 200)
   } catch (error) {
-    next(error);
+    next(error)
   }
 };
+
+export const updateCoverImages = [
+  uploadImagesMiddleware,
+  async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) : Promise<any> => {
+    try {
+      const id = req.user?.id
+      if (!id) return res.jsonError('Missing restaurant id', 400)
+
+      const restaurant = await prisma.restaurant.findUnique({
+        where: { id: id }
+      })
+      if (!restaurant) return res.jsonError('Restaurant not found', 404)
+
+      const files = req.files as Express.Multer.File[]
+      const images = files.map(file => file.filename)
+
+      restaurant.coverImages.push(...images)
+      if (typeof id === 'string') {
+        const updatedRestaurant = await prisma.restaurant.update({
+          where: { id: id },
+          data: { coverImages: restaurant.coverImages }
+        })
+        return res.jsonSuccess(sanitizeRestaurant(updatedRestaurant))
+      }
+    } catch (error) {
+      next(error)
+    }
+  }
+]
+
+export const addFood = [
+  uploadImagesMiddleware,
+  async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) : Promise<any> => {
+  try {
+    const id = req.user?.id;
+    if (!id) return res.jsonError('Missing restaurant id', 400)
+
+    const body = JSON.parse(req.body.data) as CreateFoodDtoInputs
+    if (!body) return res.jsonError('Missing restaurant body', 400)
+
+    const restaurant = await prisma.restaurant.findUnique({
+      where: { id: id }
+    })
+    if (!restaurant) return res.jsonError('Restaurant not found', 404)
+
+    const files = req.files as Express.Multer.File[]
+    const images = files.map(file => file.filename)
+
+    if (body.readyTime) {
+      const food = await prisma.food.create({
+        data: { ...body, images, restaurantId: id! }
+      })
+      return res.jsonSuccess(food, 201)
+    }
+  } catch (error) {
+    next(error)
+  }
+}]

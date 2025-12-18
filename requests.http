@@ -1,6 +1,6 @@
 # Création de variable(s)
-@id=26f6c956-dc58-4df9-a5f6-586f8ed98be8
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4M2QwM2UyLWIyNWYtNDg0Mi05ZWRkLTM2NGQ4Y2NlYzQyYiIsIm5hbWUiOiJMYSBCb3VjaGVyaWUiLCJvd25lck5hbWUiOiJKZWFuLVBpZXJyZSIsImVtYWlsIjoiamVhbi1waWVycmVAZ21haWwuY29tIiwiZm9vZFR5cGVzIjpbIlBpenphIiwiQnVyZ2VyIiwiRnJlbmNoIl0sImlhdCI6MTc2NTk2ODAyMywiZXhwIjoxNzY2MDU0NDIzfQ.MmiQ7704KVYGE41m87c1j3-jDpV476zSbzbbjCsslhA
+@id=4c63fe53-0b52-487d-88fa-f9d5ac389ec0
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRjNjNmZTUzLTBiNTItNDg3ZC04OGZhLWY5ZDVhYzM4OWVjMCIsIm5hbWUiOiJMYSBCb3VjaGVyaWUiLCJvd25lck5hbWUiOiJKZWFuLVBpZXJyZSIsImVtYWlsIjoiamVhbi1waWVycmVAZ21haWwuY29tIiwiZm9vZFR5cGVzIjpbIlBpenphIiwiQnVyZ2VyIiwiRnJlbmNoIl0sImlhdCI6MTc2NjA1MjEwMSwiZXhwIjoxNzY2MTM4NTAxfQ.TBBGEc-hKlPIG0Ij9W8pMST29dCG__RUUB0xeeErVAU
 
 #-------------------------------------------------------------------------------
 
@@ -65,13 +65,12 @@ POST http://localhost:8000/v1/admin/restaurant/create
 Content-Type: application/json
 
 {
-  "name": "La Boucherie",
   "ownerName": "Jean-Pierre",
   "foodTypes": ["Pizza", "Burger", "French"],
   "postalcode": "75001",
   "address": "Rue de la Paix",
   "phone": "0612345678",
-  "email": "jean-pierre@gmail.com",
+  "email": "jean-pierregmail.com",
   "password": "123456"
 }
 
@@ -83,6 +82,31 @@ Content-Type: application/json
   "email": "jean-pierre@gmail.com",
   "password": "123456"
 }
+
+### CREATE food ###
+POST http://localhost:8000/v1/restaurant/foods
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=limit
+
+--limit
+Content-Disposition: form-data; name="data"
+Content-Type: application/json
+
+{
+  "name": "Pates",
+  "description": "Des pates a la creme",
+  "category": "pates",
+  "foodType": "pates",
+  "readyTime": 15,
+  "price": 15.90
+}
+
+--limit
+Content-Disposition: form-data; name="images"; filename="pates.jpg"
+Content-Type: image/jpeg
+
+< ./tests/images/pâtes.jpg >
+--limit--
 
 ################################################################################
 # POST ROUTES
@@ -110,6 +134,26 @@ Content-Type: application/json
 ### UPDATE restaurant service available ###
 PATCH http://localhost:8000/v1/restaurant/available
 Authorization: Bearer {{token}}
+
+### UPDATE Cover images ###
+PATCH http://localhost:8000/v1/restaurant/profile/cover-images
+Authorization: Bearer {{token}}
+# le mot-clé 'boundary-limit' est là avec l'extension REST Client, afin de faire
+# les tests correctement en local
+Content-Type: multipart/form-data; boundary=limit
+
+--limit
+Content-Disposition: form-data; name="images"; filename="restaurant-1.jpg"
+Content-Type: image/jpeg
+
+< ./tests/images/restaurant-1.jpg >
+
+--limit
+Content-Disposition: form-data; name="images"; filename="restaurant-2.jpg"
+Content-Type: image/jpeg
+
+< ./tests/images/restaurant-2.jpg >
+--limit--
 
 ################################################################################
 # PATCH ROUTES

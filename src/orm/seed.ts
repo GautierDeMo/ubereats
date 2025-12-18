@@ -1,17 +1,16 @@
-import "dotenv/config";
 import { prisma } from "./v1";
 import { generateSalt, hashPassword } from "../utils/v1";
 
 const restaurants = [
   {
+    address: "10 Rue de la Roquette",
+    email: "lepetitbistro@gmail.com",
+    foodTypes: ["French", "Seafood"],
     name: "Le Petit Bistro",
     ownerName: "Isabelle Dupont",
-    foodTypes: ["French", "Seafood"],
-    postalcode: "75001",
-    address: "10 Rue de la Roquette",
-    phone: "01 45 67 89 10",
-    email: "lepetitbistro@gmail.com",
     password: "qwerty",
+    phone: "01 45 67 89 10",
+    postalcode: "75001",
   },
   {
     name: "La Brasserie Parisienne",

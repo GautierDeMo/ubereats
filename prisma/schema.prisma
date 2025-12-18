@@ -15,7 +15,14 @@ datasource db {
 
 model Food {
   id           String     @id @default(uuid())
+  createdAt    DateTime   @default(now())
   name         String
+  description  String
+  category     String
+  foodType     String
+  readyTime    Int
+  price        Float
+  images       String[]   @default([])
   restaurantId String
   restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
 }
