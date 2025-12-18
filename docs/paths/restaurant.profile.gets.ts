@@ -2,7 +2,6 @@
  * @swagger
  * /restaurant/profile:
  *   get:
- *     deprecated: true
  *     summary: Récupérer le profil du restaurant connecté
  *     tags:
  *       - Restaurants
@@ -20,6 +19,8 @@
  */
 
 /**
- * le deprecated: true dans l'annotation '@swagger' met un style sur l'un des
- * endpoints de l'API pour faire comprendre le fait qu'elle ne sera plus utilisable
+ * ajouter un 'deprecated: true'
+ * dans l'annotation '@swagger', juste après la méthode, au même niveau que
+ * 'summary' met un style sur l'endpoint de l'API pour faire comprendre le fait
+ * qu'elle n'est plus, ou ne sera plus utilisable.
  */

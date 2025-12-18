@@ -1,6 +1,6 @@
 # Création de variable(s)
-@id=4c63fe53-0b52-487d-88fa-f9d5ac389ec0
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRjNjNmZTUzLTBiNTItNDg3ZC04OGZhLWY5ZDVhYzM4OWVjMCIsIm5hbWUiOiJMYSBCb3VjaGVyaWUiLCJvd25lck5hbWUiOiJKZWFuLVBpZXJyZSIsImVtYWlsIjoiamVhbi1waWVycmVAZ21haWwuY29tIiwiZm9vZFR5cGVzIjpbIlBpenphIiwiQnVyZ2VyIiwiRnJlbmNoIl0sImlhdCI6MTc2NjA1MjEwMSwiZXhwIjoxNzY2MTM4NTAxfQ.TBBGEc-hKlPIG0Ij9W8pMST29dCG__RUUB0xeeErVAU
+@id=ee41f504-924d-4177-94bb-2b513de730bf
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVlNDFmNTA0LTkyNGQtNDE3Ny05NGJiLTJiNTEzZGU3MzBiZiIsIm5hbWUiOiJMZSBQZXRpdCBCaXN0cm8iLCJvd25lck5hbWUiOiJJc2FiZWxsZSBEdXBvbnQiLCJlbWFpbCI6ImxlcGV0aXRiaXN0cm9AZ21haWwuY29tIiwiZm9vZFR5cGVzIjpbIkZyZW5jaCIsIlNlYWZvb2QiXSwiaWF0IjoxNzY2MDc0MTQzLCJleHAiOjE3NjYxNjA1NDN9.tRxZsW7A4vjWnbooDvdPNnKVv2heMN_12eoE6MzOku0
 
 #-------------------------------------------------------------------------------
 
@@ -65,12 +65,13 @@ POST http://localhost:8000/v1/admin/restaurant/create
 Content-Type: application/json
 
 {
+  "name": "La Boucherie",
   "ownerName": "Jean-Pierre",
   "foodTypes": ["Pizza", "Burger", "French"],
   "postalcode": "75001",
   "address": "Rue de la Paix",
   "phone": "0612345678",
-  "email": "jean-pierregmail.com",
+  "email": "jean-pierre@gmail.com",
   "password": "123456"
 }
 
@@ -79,8 +80,8 @@ POST http://localhost:8000/v1/restaurant/login
 Content-Type: application/json
 
 {
-  "email": "jean-pierre@gmail.com",
-  "password": "123456"
+  "email": "lepetitbistro@gmail.com",
+  "password": "qwerty"
 }
 
 ### CREATE food ###
@@ -124,7 +125,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "Boucherie",
+  "name": "Le Grand Bistro",
   "ownerName": "Jean-Pierre",
   "foodTypes": ["Pizza", "Burger", "French"],
   "address": "Rue de la Paix",
@@ -138,7 +139,7 @@ Authorization: Bearer {{token}}
 ### UPDATE Cover images ###
 PATCH http://localhost:8000/v1/restaurant/profile/cover-images
 Authorization: Bearer {{token}}
-# le mot-clé 'boundary-limit' est là avec l'extension REST Client, afin de faire
+# le mot-clé 'boundary=limit' est là avec l'extension REST Client, afin de faire
 # les tests correctement en local
 Content-Type: multipart/form-data; boundary=limit
 
