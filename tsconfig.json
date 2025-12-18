@@ -45,9 +45,18 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    // TODO: c'est dans le restaurantDTO la raison qui fait qu'on a ajouté ça
-    // rapport aux classes au lieu des interfaces
+
+    /** rapport aux classes au lieu des interfaces : vu qu'on ne définit pas les
+      * les propriétés de cette classe autre part que dans le DTO et le schéma (
+      * par ex avec un constructeur ou en le mettant 'undefined', donc pas obli-
+      * gatoire, et bien il faut passer cette prop à 'false')
+      */
     "strictPropertyInitialization": false,
+
+    /** Mais comme on a besoin de faire des validations, on utilise les
+      * décorateurs de prop dans une classe afin aussi de mettre des validations
+      * à notre classe lors de sa construction/création
+      */
     "experimentalDecorators": true
   },
 }
